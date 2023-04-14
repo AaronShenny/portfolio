@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron Shenny</title>
+    <link rel="stylesheet" href="/index.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="social-links">
+            <div class="instagram">
+               <a href="https://instagram.com/aaronshenny"><img src="/Screenshot 2023-04-12 115419.png" alt="Instagram" width="33px" height="33px" class="insta"></a> 
+            </div>
+            <div class="linkedin">
+                <a href="https://linkedin.com/aaronshenny"><img src="/linkedin.jpg" alt="linkedin"  width="32px" height="32px"></a>
+            </div>
+            <div class="facebook">
+               <a href="https://facebook.com/aaronshenny"><img src="/Facebook-removebg-preview.png" alt="Facebook" width="32px" height="32px"></a>
+            </div>
+            <div class="youtube">
+                <a href="https://youtube.com/@invertedunni"><img src="/images.jpg" alt="Youtube" width="32px" height="32px"></a>
+            </div>
+        </div>
+
+    </div>
+    <div class="body">
+        <div class="dp">
+            <img src="/IMG-20220902-WA0099__1_-removebg-preview.png" alt="profil image"class="dp-img">
+        </div>
+        <div class="name">
+            <h1 class="nametext">Aaron Shenny</h1>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Press+Start+2P&display=swap');
+              </style></style>
+        </div>
+        <div class="name-sub">
+            <h2 class="name-sub-text">
+                Student at MAR THOMA PUBLIC SCHOOL
+                A DEVELOPER
+            </h2>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Lato:wght@300&family=Press+Start+2P&display=swap');
+              </style>
+        </div>
+        <div class="line">
+            <hr class="linehr">
+        </div>
+        <div class="projects">
+            <p class="edu">
+                PROJECTS.
+            </p>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Bungee+Hairline&family=Lato:wght@300&family=Press+Start+2P&display=swap');
+              </style>
+              <ul class="items">
+                <li>Form Submission</li>
+                <li>Facebook login page</li>
+                <li>Password Management System</li>
+              </ul>
+              <style>
+                @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
+              </style>
+              
+        </div>
+        <div class="education">
+            <p class="educationtext">
+                EDUCATION
+            </p>
+            <p class="edu-sub">
+                Still at school, studying at MAR THOMA PUBLIC SCHOOL.
+                Reached 11 std, waiting for 10th exam marks.
+                Like to take computer science in future.
+            </p>
+            <img src="/mar-thoma-public-school-ernakulam-719517669.jpg" alt="" class="schoolimg">
+        </div>
+
+        <div class="photos">
+            <img src="/IMG-20220902-WA0003.jpg" alt="" class="pic1">
+            <img src="/IMG_20230216_130939_359.webp" alt="" class="pic2">
+        </div>
+        <div class="programme">
+            <p class="tittle">
+                PRAGRAMMING LANGUAES THAT I KNOW
+            </p>
+            <ul class="listp">
+                <li class="l1">• Python</li>
+                <l2 class="l2">• HTML</l2>
+                <l3 class="l3">• CSS</l3>
+                <l4 class="l4">• Java</l4>
+            </ul>
+        </div>
+        <div class="form">
+            <p class="contactme">CONNECT ME</p>
+            <form id = "submit-form"  action="/index.html" class="form1">
+                <p class="namet">NAME  : </p> 
+                <input type="text" required name="name" class="name1" placeholder="Your name please..."><br>
+                <p class="email1">E-MAIL : </p> 
+                <input type="email" required name="email" class="email" placeholder="Your Email id please"><br>
+                <p class="msg">Your Message :</p> 
+                <input type="text" name="Your message" class="query" placeholder="Message.."><br>
+                <input type="submit" value="Submit" class="submit">
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer">
+        <p>©aaronshenny2023</p>
+    </div>
+
+    </div>
+    <script>
+        $("#submit-form").submit((e)=>{
+            e.preventDefault()
+            $.ajax({
+                url:"https://script.google.com/macros/s/AKfycbwPvFm3nL_4_Wd6qG0RlL_xhZJwixAI1h5J8pJoZgqKxS4nK0qwCm4DmFS34r-C7RHVpQ/exec",
+                data:$("#submit-form").serialize(),
+                method:"post",
+                success:function (response){
+                    alert("Form submitted successfully")
+                    window.location.reload()
+                    
+                },
+                error:function (err){
+                    alert("Something Error")
+    
+                }
+            })
+        })
+    </script>
+</body>
+</html>
