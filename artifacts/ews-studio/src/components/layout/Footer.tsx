@@ -15,9 +15,7 @@ export function Footer() {
       </div>
 
       <div className="w-1/3 text-center hidden md:flex flex-col items-center gap-1 opacity-70">
-        <p className="text-[9px] uppercase tracking-[0.15em]">Website Development ₹3,000+</p>
-        <p className="text-[9px] uppercase tracking-[0.15em]">Web Applications ₹25,000+</p>
-        <p className="text-[9px] uppercase tracking-[0.15em]">Maintenance ₹1,000/month</p>
+        {/* Prices removed from fixed footer as requested */}
       </div>
 
       <div className="w-1/3 text-right">

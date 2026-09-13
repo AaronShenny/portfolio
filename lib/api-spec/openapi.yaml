@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: inquiries
+    description: Project inquiry operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,37 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /inquiries:
+    post:
+      operationId: createInquiry
+      tags: [inquiries]
+      summary: Submit a project inquiry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InquiryInput"
+      responses:
+        "201":
+          description: Inquiry submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Inquiry"
+    get:
+      operationId: listInquiries
+      tags: [inquiries]
+      summary: List project inquiries for an authenticated administrator
+      responses:
+        "200":
+          description: Project inquiries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Inquiry"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +66,40 @@ components:
           type: string
       required:
         - status
+    InquiryInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        business:
+          type: string
+          maxLength: 160
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        projectType:
+          type: string
+          enum: [website, web_application, maintenance, other]
+        budget:
+          type: string
+          enum: [under_10k, 10k_25k, 25k_plus, not_sure]
+        details:
+          type: string
+          minLength: 10
+          maxLength: 5000
+      required: [name, email, projectType, budget, details]
+    Inquiry:
+      allOf:
+        - $ref: "#/components/schemas/InquiryInput"
+        - type: object
+          properties:
+            id:
+              type: integer
+            createdAt:
+              type: string
+              format: date-time
+          required: [id, createdAt]
 
