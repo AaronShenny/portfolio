@@ -10,25 +10,31 @@ import { Link } from 'wouter';
 export function ContactOverlay() {
   const { close } = useOverlay();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const createInquiry = useCreateInquiry();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitError('');
     const formData = new FormData(e.currentTarget);
+    const business = String(formData.get('business') ?? '').trim();
     
     createInquiry.mutate({
       data: {
-        name: formData.get('name') as string,
-        business: formData.get('business') as string || undefined,
-        email: formData.get('email') as string,
+        name: String(formData.get('name') ?? '').trim(),
+        business: business || undefined,
+        email: String(formData.get('email') ?? '').trim(),
         projectType: formData.get('type') as InquiryInputProjectType,
         budget: formData.get('budget') as InquiryInputBudget,
-        details: formData.get('details') as string,
+        details: String(formData.get('details') ?? '').trim(),
       }
     }, {
       onSuccess: () => {
         setIsSuccess(true);
-      }
+      },
+      onError: () => {
+        setSubmitError('We could not send your inquiry. Please check each field and try again.');
+      },
     });
   };
 
@@ -111,8 +117,14 @@ export function ContactOverlay() {
 
               <div className="space-y-2 pt-4">
                 <label htmlFor="details" className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">Project Details</label>
-                <textarea required id="details" name="details" rows={4} className="w-full bg-transparent border border-border p-3 text-sm focus:outline-none focus:border-foreground transition-colors resize-none" placeholder="Briefly describe what you're looking to build..."></textarea>
+                <textarea required minLength={10} maxLength={5000} id="details" name="details" rows={4} className="w-full bg-transparent border border-border p-3 text-sm focus:outline-none focus:border-foreground transition-colors resize-none" placeholder="Briefly describe what you're looking to build (at least 10 characters)..."></textarea>
               </div>
+
+              {submitError && (
+                <p role="alert" aria-live="polite" className="text-sm text-red-600">
+                  {submitError}
+                </p>
+              )}
 
               <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-6">
                 <button 
