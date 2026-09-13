@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "EXTAPANO WEB STUDIO"
+description = "A premium, single-screen studio website for EXTAPANO WEB STUDIO, presenting services, pricing, care plans, selected work, policies, and project inquiries through refined accessible overlays without page scrolling."
+version = "1.0.0"
+id = "artifacts/ews-studio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25607
+
+[services.development]
+run = "pnpm --filter @workspace/ews-studio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ews-studio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ews-studio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25607"
+BASE_PATH = "/"
