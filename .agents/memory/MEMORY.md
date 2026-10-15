@@ -1,0 +1,1 @@
+- [Portfolio content boundaries](portfolio-boundaries.md) — personal experiments and studio services must stay distinct; use verified public sources, not inferred resume claims.

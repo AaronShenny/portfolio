@@ -6,7 +6,7 @@ export function Hero() {
   const { open } = useOverlay();
 
   return (
-    <main className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+    <main className="studio-hero absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
       <div className="max-w-4xl w-full flex flex-col items-center z-20">
         
         <motion.div

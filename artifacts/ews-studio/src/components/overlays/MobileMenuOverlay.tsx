@@ -1,5 +1,6 @@
 import { useOverlay, OverlayType } from '@/context/OverlayContext';
 import { motion } from 'framer-motion';
+import { OverlayBase } from '@/components/ui/OverlayBase';
 
 const NAV_ITEMS: { label: string; id: OverlayType }[] = [
   { label: 'WORK', id: 'work' },
@@ -10,17 +11,10 @@ const NAV_ITEMS: { label: string; id: OverlayType }[] = [
 ];
 
 export function MobileMenuOverlay() {
-  const { open } = useOverlay();
+  const { open, close } = useOverlay();
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-30 bg-background flex flex-col justify-center px-6"
-    >
-      <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
+    <OverlayBase title="STUDIO MENU" onClose={close}>
       
       <nav className="flex flex-col gap-6 items-start relative z-10">
         {NAV_ITEMS.map((item, i) => (
@@ -37,7 +31,7 @@ export function MobileMenuOverlay() {
         ))}
       </nav>
 
-      <div className="absolute bottom-12 left-6 right-6 flex justify-between items-end border-t border-border pt-6">
+      <div className="relative mt-12 flex justify-between items-end border-t border-border pt-6">
         <p className="text-[10px] tracking-widest uppercase opacity-50">
           SYS.01 // EWS BASE
         </p>
@@ -45,6 +39,6 @@ export function MobileMenuOverlay() {
           © 2026
         </p>
       </div>
-    </motion.div>
+    </OverlayBase>
   );
 }

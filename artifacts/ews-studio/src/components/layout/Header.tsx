@@ -48,6 +48,7 @@ export function Header() {
             {NAV_ITEMS.map((item, i) => (
               <motion.button
                 key={item.id}
+                id={`studio-nav-${item.id}`}
                 initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 * i, ease: "easeOut" }}
@@ -66,6 +67,7 @@ export function Header() {
       <div className="md:hidden z-50 flex items-center pointer-events-auto">
         {(!active || active === 'menu') && (
           <motion.button 
+            id="studio-menu-trigger"
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}

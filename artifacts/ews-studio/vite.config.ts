@@ -2,6 +2,7 @@ import path from 'path';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
+import { applyHtmlMetadata } from './src/lib/page-metadata';
 
 import runtimeErrorOverlay from '@replit/vite-plugin-runtime-error-modal';
 
@@ -30,6 +31,24 @@ if (!basePath) {
 export default defineConfig({
   base: basePath,
   plugins: [
+    {
+      name: 'public-route-metadata',
+      transformIndexHtml(html, context) {
+        const prefix = basePath.replace(/\/$/, '');
+        const requestedPath = (context.originalUrl ?? context.path).split('?')[0];
+        const route = prefix && requestedPath.startsWith(prefix) ? requestedPath.slice(prefix.length) : requestedPath;
+        return applyHtmlMetadata(html, route === '/index.html' ? '/' : route);
+      },
+      generateBundle: {
+        order: 'post',
+        handler(_options, bundle) {
+          const index = bundle['index.html'];
+          if (index?.type === 'asset') {
+            this.emitFile({ type: 'asset', fileName: 'work/index.html', source: applyHtmlMetadata(String(index.source), '/work') });
+          }
+        },
+      },
+    },
     react(),
     tailwindcss({ optimize: false }),
     runtimeErrorOverlay(),

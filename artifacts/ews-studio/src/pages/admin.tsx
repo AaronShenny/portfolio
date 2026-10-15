@@ -10,7 +10,7 @@ export default function AdminPage() {
   const { signOut } = useClerk();
 
   const handleSignOut = () => {
-    signOut({ redirectUrl: '/' });
+    signOut({ redirectUrl: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/work` });
   };
 
   return (
@@ -19,7 +19,7 @@ export default function AdminPage() {
         
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
-            <Link href="/" className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors mb-6">
+            <Link href="/work" className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors mb-6">
               <ArrowLeft className="w-4 h-4" /> Back to Studio
             </Link>
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight uppercase">Inquiries</h1>

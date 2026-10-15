@@ -5,6 +5,9 @@ import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import Home from '@/pages/home';
+import Portfolio from '@/pages/portfolio';
+import { PageMetadata } from '@/components/layout/PageMetadata';
+import { MotionConfig } from 'framer-motion';
 import Admin from '@/pages/admin';
 import {
   Route,
@@ -42,7 +45,7 @@ const clerkAppearance = {
   cssLayerName: "clerk",
   options: {
     logoPlacement: "inside" as const,
-    logoLinkUrl: basePath || "/",
+     logoLinkUrl: `${basePath}/work`,
     logoImageUrl: `${window.location.origin}${basePath}/logo.svg`,
   },
   variables: {
@@ -140,8 +143,10 @@ function AdminRedirect() {
 function Router() {
   return (
     <RoutedErrorBoundary>
+      <PageMetadata />
       <Switch>
-        <Route path="/" component={Home} />
+        <Route path="/" component={Portfolio} />
+        <Route path="/work" component={Home} />
         <Route path="/admin" component={AdminRedirect} />
         <Route path="/sign-in/*?" component={SignInPage} />
         <Route path="/sign-up/*?" component={SignUpPage} />
@@ -197,7 +202,9 @@ function ClerkProviderWithRoutes() {
 function App() {
   return (
     <WouterRouter base={basePath}>
-      <ClerkProviderWithRoutes />
+      <MotionConfig reducedMotion="user">
+        <ClerkProviderWithRoutes />
+      </MotionConfig>
     </WouterRouter>
   );
 }

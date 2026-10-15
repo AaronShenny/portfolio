@@ -1,7 +1,7 @@
 kind = "web"
 previewPath = "/"
-title = "EXTAPANO WEB STUDIO"
-description = "A premium, single-screen studio website for EXTAPANO WEB STUDIO, presenting services, pricing, care plans, selected work, policies, and project inquiries through refined accessible overlays without page scrolling."
+title = "Aaron Shenny / EWS"
+description = "Aaron Shenny’s personal backend and AI portfolio at /, with Extapano Web Studio services, policies and database-backed project inquiries at /work."
 version = "1.0.0"
 id = "artifacts/ews-studio"
 router = "path"
@@ -18,6 +18,14 @@ run = "pnpm --filter @workspace/ews-studio run dev"
 build = [ "pnpm", "--filter", "@workspace/ews-studio", "run", "build" ]
 serve = "static"
 publicDir = "artifacts/ews-studio/dist/public"
+
+[[services.production.rewrites]]
+from = "/work"
+to = "/work/index.html"
+
+[[services.production.rewrites]]
+from = "/work/"
+to = "/work/index.html"
 
 [[services.production.rewrites]]
 from = "/*"

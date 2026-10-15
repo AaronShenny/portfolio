@@ -127,12 +127,45 @@
     @apply border-border;
   }
 
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground;
     overflow: hidden;
     height: 100dvh;
     width: 100vw;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Single-screen pages must also fit short phone and landscape viewports. */
+@media (max-height: 600px) {
+  .studio-hero h1 { font-size: clamp(24px, 4vw, 40px); margin-bottom: 12px; }
+  .studio-hero > div > div:first-child { margin-bottom: 8px; }
+  .studio-hero > div > div:last-child { margin-top: 4px; gap: 8px; }
+  .studio-hero button { padding: 12px 20px; }
+  .studio-hero p { font-size: 12px; }
+  .portfolio-page h1 { font-size: clamp(24px, 5vw, 38px); margin-bottom: 12px; }
+  .portfolio-page main p:first-child { margin-bottom: 12px; }
+  .portfolio-page main p:last-child { font-size: 12px; }
+  .portfolio-page main nav { margin-top: 20px; }
+}
+
+@media (max-height: 500px) and (min-width: 768px) {
+  .studio-hero > div { max-width: 60vw; }
+  .studio-hero p { max-width: 440px; }
+  .portfolio-page h1 { font-size: 32px; }
 }
 
 @layer utilities {
