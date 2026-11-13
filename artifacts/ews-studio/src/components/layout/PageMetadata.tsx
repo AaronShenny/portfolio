@@ -13,7 +13,7 @@ export function PageMetadata() {
     for (const selector of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) {
       document.querySelector(selector)?.setAttribute('content', title);
     }
-    document.querySelector('meta[name="robots"]')?.setAttribute('content', location === '/' || location.startsWith('/work') ? 'index, follow' : 'noindex, nofollow');
+    document.querySelector('meta[name="robots"]')?.setAttribute('content', location === '/' || location.startsWith('/work') || location === '/project/recordly' || location === '/project/recordly/' ? 'index, follow' : 'noindex, nofollow');
   }, [location]);
   return null;
 }

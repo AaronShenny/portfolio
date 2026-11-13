@@ -9,6 +9,10 @@ export const studioMetadata = {
 };
 
 export function metadataForPath(path: string) {
+  if (path === '/project/recordly' || path === '/project/recordly/') return {
+    title: 'Recordly | College Record Maker — Aaron Shenny',
+    description: 'Recordly is an independent Windows app for preparing college Word records from your content and templates. Explore the project and download releases on GitHub.',
+  };
   if (path === '/work' || path === '/work/') return studioMetadata;
   if (path === '/') return portfolioMetadata;
   if (path.startsWith('/admin')) return { title: 'Inquiries | EWS', description: 'Studio administration.' };

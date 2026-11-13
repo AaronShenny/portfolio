@@ -45,6 +45,7 @@ export default defineConfig({
           const index = bundle['index.html'];
           if (index?.type === 'asset') {
             this.emitFile({ type: 'asset', fileName: 'work/index.html', source: applyHtmlMetadata(String(index.source), '/work') });
+            this.emitFile({ type: 'asset', fileName: 'project/recordly/index.html', source: applyHtmlMetadata(String(index.source), '/project/recordly') });
           }
         },
       },

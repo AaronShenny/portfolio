@@ -6,6 +6,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import Home from '@/pages/home';
 import Portfolio from '@/pages/portfolio';
+import Recordly from '@/pages/recordly';
 import { PageMetadata } from '@/components/layout/PageMetadata';
 import { MotionConfig } from 'framer-motion';
 import Admin from '@/pages/admin';
@@ -147,6 +148,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Portfolio} />
         <Route path="/work" component={Home} />
+        <Route path="/project/recordly" component={Recordly} />
         <Route path="/admin" component={AdminRedirect} />
         <Route path="/sign-in/*?" component={SignInPage} />
         <Route path="/sign-up/*?" component={SignUpPage} />

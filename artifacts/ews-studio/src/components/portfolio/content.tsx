@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import { ReactNode } from 'react';
+import { Link } from 'wouter';
 
 export function Ext({ href, children, id }: { href: string; children: ReactNode; id: string }) {
   return (
@@ -40,6 +41,14 @@ export function Projects() {
   return (
     <div>
       <p className="text-sm text-muted-foreground mb-8">Personal projects and experiments, published as open repositories.</p>
+      <article className="border border-border p-6 md:p-8 mb-8 space-y-4 bg-background/60">
+        <span className="text-micro text-muted-foreground">Windows / College records</span>
+        <h3 className="text-xl md:text-2xl font-bold tracking-tight">Recordly</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">An independently developed desktop app for preparing college Word records from your content and templates.</p>
+        <Link href="/project/recordly" data-testid="link-project-recordly" className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase border-b border-foreground/30 pb-1 hover:border-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+          Explore project <ArrowUpRight className="w-3.5 h-3.5" />
+        </Link>
+      </article>
       <ul className="border-t border-border">
         {projects.map((p) => (
           <li key={p.name} data-testid={`card-project-${p.name}`} className="border-b border-border py-7 grid gap-3 md:grid-cols-[3rem_1fr]">
